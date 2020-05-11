@@ -15,12 +15,10 @@ def inputWPM():
     wpm = int(input())
 
 def wordCount(string):
-    words = len(string.split())
-    return words
+    return len(string.split())
 
 def charCount(string):
-    chars = len(string)
-    return chars
+    return len(string)
 
 def timeDelay(targetWPM, numWords, numChars):
     inputDelay = 0.01
