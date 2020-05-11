@@ -22,9 +22,12 @@ def charCount(string):
     chars = len(string)
     return chars
 
-def timeDelay(targetWPM, numWords):
+def timeDelay(targetWPM, numWords, numChars):
+    inputDelay = 0.01
+    totalInputDelay = inputDelay * numChars
+
     timeToTake = (numWords * 60) / targetWPM
-    delay = timeToTake / numWords
+    delay = (timeToTake - totalInputDelay) / numWords
     return delay
 
 inputWPM()
@@ -42,13 +45,14 @@ practice.click()
 html = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'inputPanel')))
 excerpt = html.find_element_by_css_selector('tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td > div')
 
-print(excerpt.text)
-print(wordCount(excerpt.text))
+print("Text: " + excerpt.text)
+print("Words: " + str(wordCount(excerpt.text)))
+print("Chars: " + str(charCount(excerpt.text)))
+
+delay = timeDelay(wpm, wordCount(excerpt.text), charCount(excerpt.text))
+print(delay)
 
 textInput = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div[2]/table/tbody/tr[2]/td[2]/div/div[1]/table/tbody/tr[3]/td/div/div/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input')))
-
-delay = timeDelay(wpm, wordCount(excerpt.text))
-print(delay)
 
 for i in excerpt.text:
     textInput.send_keys(i)
