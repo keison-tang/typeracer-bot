@@ -7,23 +7,27 @@ The Typeracer '[Cheating Universe](https://play.typeracer.com/?universe=insane)'
 ## Setup
 
 1. Clone the repo and navigate to it
-2. Set up a virtual envrionment for project and install dependencies from requirements.txt in an **active venv**
-  ```
-  python -m venv venv/
-  source venv/Scripts/activate
-  pip install -r requirements.txt
-  ```
+2. Set up a virtual environment for project and install dependencies from requirements.txt in an **active venv**
+
+    ``` bash
+    python -m venv venv/
+    source venv/Scripts/activate
+    pip install -r requirements.txt
+    ```
+
 3. Download correct version of [ChromeDriver](https://chromedriver.chromium.org/downloads) and put into repo.
    - If not using Chrome, get the WebDriver for your chosen browser and update the line which creates the instance of WebDriver
 
 ## Run
 
 1. Execute in IDE / text editor / command line
-```
-python typeracer-bot.py
-```
+
+  ``` bash
+  python typeracer-bot.py
+  ```
 
 ## Useful Links
+
 - Selenium Docs
   - Selenium (official): [Link](https://www.selenium.dev/documentation/en/)
   - Selenium with Python (unofficial): [Link](https://selenium-python.readthedocs.io/index.html)
