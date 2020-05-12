@@ -5,30 +5,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
+from utils.input import inputWPM
+from utils.characters import wordCount, charCount
+from utils.time import timeDelay
+
 import time
 
-global wpm
-
-def inputWPM():
-    global wpm
-    print("Enter a target WPM: ")
-    wpm = int(input())
-
-def wordCount(string):
-    return len(string.split())
-
-def charCount(string):
-    return len(string)
-
-def timeDelay(targetWPM, numWords, numChars):
-    inputDelay = 0.01
-    totalInputDelay = inputDelay * numChars
-
-    timeToTake = (numWords * 60) / targetWPM
-    delay = (timeToTake - totalInputDelay) / numWords
-    return delay
-
-inputWPM()
+wpm = inputWPM()
 
 driver = webdriver.Chrome()
 driver.get('https://play.typeracer.com/?universe=insane')
@@ -52,8 +35,8 @@ print(delay)
 
 textInput = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div[1]/div[2]/table/tbody/tr[2]/td[2]/div/div[1]/table/tbody/tr[3]/td/div/div/table/tbody/tr[2]/td[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input')))
 
-for i in excerpt.text:
-    textInput.send_keys(i)
+for word in excerpt.text:
+    textInput.send_keys(word)
 
-    if i == " ":
+    if word == " ":
         time.sleep(delay)
